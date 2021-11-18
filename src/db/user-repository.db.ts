@@ -10,7 +10,7 @@ import {
     QueryOutput,
     UpdateItemInput
 } from "aws-sdk/clients/dynamodb";
-import SearchException from "../exceptions/search.exception";
+import { AppException } from "../exceptions/app.exception";
 import {ExceptionType} from "../constants/exceptionType";
 import { Guid } from 'guid-typescript';
 import getAppSettings from "../utils/settings.utils";
@@ -35,7 +35,7 @@ export const getUserById = async (id: string): Promise<IUser> => {
         .promise();
 
     if (!result.Items.length) {
-        throw new SearchException(ExceptionType.NotFound);
+        throw new AppException(ExceptionType.NotFound);
     }
 
     return result.Items[0] as unknown as IUser;
