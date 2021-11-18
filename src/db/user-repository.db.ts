@@ -2,7 +2,6 @@ import AWS, {AWSError} from 'aws-sdk';
 import {PromiseResult} from "aws-sdk/lib/request";
 import IUser from "../types/user.types";
 import IAppSettings from "../types/settings.types";
-import appSettings from "../utils/settings.utils";
 import {
     AttributeValue,
     DeleteItemInput,
@@ -14,9 +13,9 @@ import {
 import SearchException from "../exceptions/search.exception";
 import {ExceptionType} from "../constants/exceptionType";
 import { Guid } from 'guid-typescript';
+import getAppSettings from "../utils/settings.utils";
 
-const { awsTableName }: IAppSettings = appSettings;
-
+const { awsTableName }: IAppSettings = getAppSettings();
 const awsDocClient: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient();
 
 export const getUserById = async (id: string): Promise<IUser> => {

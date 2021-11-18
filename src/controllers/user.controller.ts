@@ -4,7 +4,7 @@ import {
     createUser as createUserRepository,
     updateUser as updateUserRepository,
     deleteUser as deleteUserRepository,
-} from '../db/user.repository';
+} from '../db/user-repository.db';
 import IUser from "../types/user.types";
 import { StatusCodes } from 'http-status-codes';
 

@@ -1,19 +1,37 @@
 import IAppSettings from "../types/settings.types";
+import SearchException from "../exceptions/search.exception";
+import {ExceptionType} from "../constants/exceptionType";
+import {config} from "dotenv";
 
-let appSettings: IAppSettings = {
+config();
+
+const appSettings: IAppSettings = {
     awsRegion: "",
     awsTableName: "",
     host: "",
     port: 0
-}
-
-const getAppSettings = (): void => {
-    appSettings.host = process.env.HOST ?? 'localhost';
-    appSettings.port =  process.env.PORT ? Number(process.env.PORT) : 3006;
-    appSettings.awsRegion = process.env.AWS_REGION ?? '';
-    appSettings.awsTableName = process.env.AWS_TABLE_NAME ?? '';
 };
 
-getAppSettings();
+const getAppSettings = (): IAppSettings => {
+    if (appSettings.host && appSettings.port && appSettings.awsRegion && appSettings.awsTableName) {
+        return appSettings;
+    }
 
-export default appSettings;
+    const host: string = process.env.HOST;
+    const port: number = Number(process.env.PORT);
+    const awsRegion: string = process.env.AWS_REGION;
+    const awsTableName: string = process.env.AWS_TABLE_NAME;
+
+    if (!host || !port || !awsRegion || !awsTableName) {
+        throw new SearchException(ExceptionType.ServiceUnavailable, 'No env params to start app');
+    }
+
+    appSettings.host = host;
+    appSettings.port =  port;
+    appSettings.awsRegion = awsRegion;
+    appSettings.awsTableName = awsTableName;
+
+    return appSettings;
+};
+
+export default getAppSettings;
