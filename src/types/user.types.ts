@@ -1,6 +1,7 @@
 import { UserAddressTypeName, UserGender, UserMarriedStatus } from "../constants/user.constants";
 
 export default interface IUser {
+    id: string;
     firstName: string;
     middleName?: string;
     lastName: string;
