@@ -16,5 +16,5 @@ export enum UserMarriedStatus {
     Single = 'Single',
     Married = 'Married',
     Windowed = 'Windowed',
-    Divorced = 'Divorced'
+    Divorced = 'Divorced',
 }

@@ -1,15 +1,15 @@
-import IAppSettings from "../types/settings.types";
-import { AppException } from "../exceptions/app.exception";
-import {ExceptionType} from "../constants/exceptionType";
-import {config} from "dotenv";
+import IAppSettings from '../types/settings.types';
+import { AppException } from '../exceptions/app.exception';
+import { ExceptionType } from '../constants/exceptionType';
+import { config } from 'dotenv';
 
 config();
 
 const appSettings: IAppSettings = {
-    awsRegion: "",
-    awsTableName: "",
-    host: "",
-    port: 0
+    awsRegion: '',
+    awsTableName: '',
+    host: '',
+    port: 0,
 };
 
 const getAppSettings = (): IAppSettings => {
@@ -18,7 +18,7 @@ const getAppSettings = (): IAppSettings => {
     }
 
     const host: string = process.env.HOST;
-    const port: number = Number(process.env.PORT);
+    const port = Number(process.env.PORT);
     const awsRegion: string = process.env.AWS_REGION;
     const awsTableName: string = process.env.AWS_TABLE_NAME;
 
@@ -27,7 +27,7 @@ const getAppSettings = (): IAppSettings => {
     }
 
     appSettings.host = host;
-    appSettings.port =  port;
+    appSettings.port = port;
     appSettings.awsRegion = awsRegion;
     appSettings.awsTableName = awsTableName;
 

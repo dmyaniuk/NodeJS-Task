@@ -1,4 +1,4 @@
-import AWS from "aws-sdk";
+import AWS from 'aws-sdk';
 
 const setupAwsConnection = (awsRegion: string) => {
     AWS.config.update({

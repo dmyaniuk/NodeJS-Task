@@ -1,19 +1,19 @@
-import AWS, {AWSError} from 'aws-sdk';
-import {PromiseResult} from "aws-sdk/lib/request";
-import IUser from "../types/user.types";
-import IAppSettings from "../types/settings.types";
+import AWS, { AWSError } from 'aws-sdk';
+import IAppSettings from '../types/settings.types';
+import IUser from '../types/user.types';
+import getAppSettings from '../utils/settings.utils';
+import { AppException } from '../exceptions/app.exception';
 import {
     AttributeValue,
     DeleteItemInput,
     PutItemInput,
     QueryInput,
     QueryOutput,
-    UpdateItemInput
-} from "aws-sdk/clients/dynamodb";
-import { AppException } from "../exceptions/app.exception";
-import {ExceptionType} from "../constants/exceptionType";
+    UpdateItemInput,
+} from 'aws-sdk/clients/dynamodb';
+import { ExceptionType } from '../constants/exceptionType';
 import { Guid } from 'guid-typescript';
-import getAppSettings from "../utils/settings.utils";
+import { PromiseResult } from 'aws-sdk/lib/request';
 
 const { awsTableName }: IAppSettings = getAppSettings();
 const awsDocClient: AWS.DynamoDB.DocumentClient = new AWS.DynamoDB.DocumentClient();
@@ -22,24 +22,22 @@ export const getUserById = async (id: string): Promise<IUser> => {
     const query: QueryInput = {
         TableName: awsTableName,
         ExpressionAttributeNames: {
-            "#id": "id",
+            '#id': 'id',
         },
         ExpressionAttributeValues: {
-            ":id": id as AttributeValue,
+            ':id': id as AttributeValue,
         },
-        KeyConditionExpression: "#id = :id"
-    }
+        KeyConditionExpression: '#id = :id',
+    };
 
-    const result: PromiseResult<QueryOutput, AWSError> = await awsDocClient
-        .query(query)
-        .promise();
+    const result: PromiseResult<QueryOutput, AWSError> = await awsDocClient.query(query).promise();
 
     if (!result.Items.length) {
         throw new AppException(ExceptionType.NotFound);
     }
 
     return result.Items[0] as unknown as IUser;
-}
+};
 
 export const createUser = async (user: IUser): Promise<void> => {
     const newUserId: string = Guid.create().toString();
@@ -47,18 +45,17 @@ export const createUser = async (user: IUser): Promise<void> => {
     const query: PutItemInput = {
         TableName: awsTableName,
         Item: {
-            ...Object.entries(user)
-                .reduce((acc: { [key: string]: unknown }, [key, value]: [key: string, value: unknown]) =>
-                    value ? ({ ...acc, [key]: value }) : acc, {}
-                ),
+            ...Object.entries(user).reduce(
+                (acc: { [key: string]: unknown }, [key, value]: [key: string, value: unknown]) =>
+                    value ? { ...acc, [key]: value } : acc,
+                {},
+            ),
             id: newUserId as AttributeValue,
-        }
-    }
+        },
+    };
 
-    await awsDocClient
-        .put(query)
-        .promise();
-}
+    await awsDocClient.put(query).promise();
+};
 
 export const updateUser = async (user: IUser): Promise<void> => {
     await getUserById(user.id);
@@ -69,22 +66,16 @@ export const updateUser = async (user: IUser): Promise<void> => {
             id: user.id as AttributeValue,
         },
         // example update params, can easily extend it
-        UpdateExpression: "set " +
-            "firstName = :fN, " +
-            "lastName = :ln, " +
-            "middleName = :mN" +
-            "",
-        ExpressionAttributeValues:{
-            ":fN": user.firstName as AttributeValue,
-            ":ln": user.lastName as AttributeValue,
-            ":mN": user.middleName as AttributeValue
+        UpdateExpression: 'set ' + 'firstName = :fN, ' + 'lastName = :ln, ' + 'middleName = :mN' + '',
+        ExpressionAttributeValues: {
+            ':fN': user.firstName as AttributeValue,
+            ':ln': user.lastName as AttributeValue,
+            ':mN': user.middleName as AttributeValue,
         },
-    }
+    };
 
-    await awsDocClient
-        .update(query)
-        .promise();
-}
+    await awsDocClient.update(query).promise();
+};
 
 export const deleteUser = async (id: string): Promise<void> => {
     const query: DeleteItemInput = {
@@ -92,9 +83,7 @@ export const deleteUser = async (id: string): Promise<void> => {
         Key: {
             id: id as AttributeValue,
         },
-    }
+    };
 
-    await awsDocClient
-        .delete(query)
-        .promise();
-}
+    await awsDocClient.delete(query).promise();
+};

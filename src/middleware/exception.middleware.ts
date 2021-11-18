@@ -1,7 +1,7 @@
-import {Express, NextFunction, Request, Response} from 'express';
+import { AppException } from '../exceptions/app.exception';
+import { ExceptionType } from '../constants/exceptionType';
+import { Express, NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { AppException } from "../exceptions/app.exception";
-import {ExceptionType} from "../constants/exceptionType";
 
 const exceptionMiddlewareHandler = (error: unknown, _req: Request, res: Response, _next: NextFunction): void => {
     const resBody: { message: string } = { message: 'Some internal server error occurred...' };
@@ -29,8 +29,8 @@ const exceptionMiddlewareHandler = (error: unknown, _req: Request, res: Response
     }
 
     res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR).send(resBody);
-}
+};
 
 export const registerExceptionMiddlewareHandler = (app: Express): void => {
     app.use(exceptionMiddlewareHandler);
-}
+};

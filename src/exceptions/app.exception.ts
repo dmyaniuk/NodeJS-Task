@@ -1,4 +1,4 @@
-import { ExceptionType } from "../constants/exceptionType";
+import { ExceptionType } from '../constants/exceptionType';
 
 export class AppException extends Error {
     private readonly _errorType: ExceptionType;
