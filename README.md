@@ -5,7 +5,7 @@
 - Typescript (with support of Nodemon for hot-reloading, linters: Prettier, ESLint to make code style consistent for all team members);
 - AWS Lambda;
 - AWS DynamoDB;
-
+- Jest (for testing)
 
 ## __Environment variables__
 - Host - host of application. Example: localhost, http://example.com;
@@ -21,7 +21,7 @@ You may see the following folders in the main __src__:
 - __controllers__ - PL for specifying endpoint that user may interact with;
 - __db__ - DAL with defining of entrypoint of infrastructure database (AWS DynamoDB);
 - __exceptions__ - Custom exceptions might be used for different levels;
-- __middleware__ - Configuration for application http-middleware (exception handling, filters, routing);
+- __middleware__ - Configuration for application http-middleware (exception handling, filters, routing, service protection with using of _helmet_ as an example);
 - __types__ - Type definitions for app (for models, reusable object etc.);
 - __utils__ - Small and reusable part of code all across the application;
 - __index.ts__ - Entrypoint for app;
@@ -34,6 +34,7 @@ There are more ways to improve this code:
 - Applying new architecture approaches (Onion Architecture, CQRS, DDD, etc.) to make business support more efficient;
 - Upgrade to __NestJS__ framework (it has a lot of advantages under the hood, like embedded DI, http-pipeline, extended support for __Express JS__ etc.)
 - Implementation of Service and Functional tests to guarantee business flow works 100% correctly;
-- Implementation of Open API standard to make endpoints descriptions (Swagger, like swagger-express-ui)
-- Adding some validation libs (like express-validation, but I've decided to implement my own)
+- Implementation of Open API standard to make endpoints descriptions (Swagger, like _swagger-express-ui_)
+- Adding some validation libs (like _express-validation_, _joi_, but I've decided to implement my own)
 - Verifying packages health and vulnerabilities issues on [Snyk](https://snyk.io/test/) (as I saw in one article, they've advised to skip packages with huge size, like > 1.5mb, and also healthscore < 50-55%). Of course, it's better to have subscription to check your code for possible issues and vulnerabilities.
+- Implementation of Service, Functional testing for app (there are might be useful _Mocha_, _supertest_, etc.)
