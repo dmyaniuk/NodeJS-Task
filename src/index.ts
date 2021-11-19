@@ -1,10 +1,10 @@
-import IAppSettings from './types/settings.types';
+import IAppSettings from './types/settingsTypes';
 import express, { Express } from 'express';
-import getAppSettings from './utils/settings.utils';
-import registerHttpPipeline from './middleware/http-pipeline.middleware';
-import registerRoutes from './middleware/routers.middleware';
-import setupAwsConnection from './db/configuration.db';
-import { registerExceptionMiddlewareHandler } from './middleware/exception.middleware';
+import getAppSettings from './utils/settingsUtils';
+import registerHttpPipeline from './middleware/httpPipelineMiddleware';
+import registerRoutes from './middleware/routersMiddleware';
+import setupAwsConnection from './db/configuration';
+import { registerExceptionMiddlewareHandler } from './middleware/exceptionMiddleware';
 
 const app: Express = express();
 const { host, port, awsRegion }: IAppSettings = getAppSettings();

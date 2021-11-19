@@ -1,4 +1,4 @@
-import usersRouter from '../routers/users.router';
+import usersRouter from '../routers/usersRouter';
 import { Express } from 'express';
 
 const registerRoutes = (app: Express): void => {

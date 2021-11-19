@@ -1,22 +1,22 @@
-import IUser from '../types/user.types';
-import { AppException } from '../exceptions/app.exception';
+import IUser from '../types/userTypes';
+import { AppException } from '../exceptions/app.Exception';
 import {
     ExceptionConstants,
     InvalidFormatRouteIdExceptionMessage,
     MissingRouteIdExceptionMessage,
     getIncorrectValueFieldExceptionMessage,
     getMissingFieldExceptionMessage,
-} from '../constants/exception.constants';
+} from '../constants/exceptionConstants';
 import { Guid } from 'guid-typescript';
 import { NextFunction, Request, Response } from 'express';
-import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/user.constants';
+import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/userConstants';
 import {
     validateDate,
     validateEmail,
     validateEnumValue,
     validateUkNino,
     validateUkPostcode,
-} from '../utils/validation.utils';
+} from '../utils/validationUtils';
 
 export const validateRouteIdParam = (req: Request, _res: Response, next: NextFunction) => {
     const id: string = req.params.id as string;

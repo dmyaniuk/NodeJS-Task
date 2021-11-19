@@ -1,5 +1,5 @@
-import { AppException } from '../exceptions/app.exception';
-import { ExceptionConstants } from '../constants/exception.constants';
+import { AppException } from '../exceptions/app.Exception';
+import { ExceptionConstants } from '../constants/exceptionConstants';
 import { Express, NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 

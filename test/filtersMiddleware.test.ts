@@ -1,16 +1,16 @@
-import IUser from '../src/types/user.types';
-import { AppException } from '../src/exceptions/app.exception';
+import IUser from '../src/types/userTypes';
+import { AppException } from '../src/exceptions/app.Exception';
 import {
     ExceptionConstants,
     InvalidFormatRouteIdExceptionMessage,
     MissingRouteIdExceptionMessage,
     getIncorrectValueFieldExceptionMessage,
     getMissingFieldExceptionMessage,
-} from '../src/constants/exception.constants';
+} from '../src/constants/exceptionConstants';
 import { Guid } from 'guid-typescript';
 import { NextFunction, Request, Response } from 'express';
-import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../src/constants/user.constants';
-import { validateRouteIdParam, validateUserModelBody } from '../src/middleware/filters.middleware';
+import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../src/constants/userConstants';
+import { validateRouteIdParam, validateUserModelBody } from '../src/middleware/filtersMiddleware';
 
 describe('Filters middleware tests', () => {
     describe('Route filter tests', () => {

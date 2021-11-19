@@ -1,4 +1,4 @@
-import { ExceptionConstants } from '../constants/exception.constants';
+import { ExceptionConstants } from '../constants/exceptionConstants';
 
 export class AppException extends Error {
     private readonly _errorType: ExceptionConstants;

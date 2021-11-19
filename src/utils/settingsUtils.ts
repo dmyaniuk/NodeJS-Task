@@ -1,6 +1,6 @@
-import IAppSettings from '../types/settings.types';
-import { AppException } from '../exceptions/app.exception';
-import { ExceptionConstants } from '../constants/exception.constants';
+import IAppSettings from '../types/settingsTypes';
+import { AppException } from '../exceptions/app.Exception';
+import { ExceptionConstants } from '../constants/exceptionConstants';
 import { config } from 'dotenv';
 
 config();

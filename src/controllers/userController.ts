@@ -1,4 +1,4 @@
-import IUser from '../types/user.types';
+import IUser from '../types/userTypes';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import {
@@ -6,7 +6,7 @@ import {
     deleteUser as deleteUserRepository,
     getUserById as getUserByIdRepository,
     updateUser as updateUserRepository,
-} from '../db/user-repository.db';
+} from '../db/userRepository';
 
 export const getUserById = async (req: Request, res: Response): Promise<void> => {
     const userId: string = req.params.id as string;

@@ -1,4 +1,4 @@
-import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/user.constants';
+import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/userConstants';
 
 export default interface IUser {
     id?: string;

@@ -1,4 +1,4 @@
-import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/user.constants';
+import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/userConstants';
 
 export const validateDate = (value: unknown): boolean => value instanceof Date;
 

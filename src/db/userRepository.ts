@@ -1,8 +1,8 @@
 import AWS, { AWSError } from 'aws-sdk';
-import IAppSettings from '../types/settings.types';
-import IUser from '../types/user.types';
-import getAppSettings from '../utils/settings.utils';
-import { AppException } from '../exceptions/app.exception';
+import IAppSettings from '../types/settingsTypes';
+import IUser from '../types/userTypes';
+import getAppSettings from '../utils/settingsUtils';
+import { AppException } from '../exceptions/app.Exception';
 import {
     AttributeValue,
     DeleteItemInput,
@@ -11,7 +11,7 @@ import {
     QueryOutput,
     UpdateItemInput,
 } from 'aws-sdk/clients/dynamodb';
-import { ExceptionConstants } from '../constants/exception.constants';
+import { ExceptionConstants } from '../constants/exceptionConstants';
 import { Guid } from 'guid-typescript';
 import { PromiseResult } from 'aws-sdk/lib/request';
 
