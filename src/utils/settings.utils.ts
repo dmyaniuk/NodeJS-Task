@@ -1,6 +1,6 @@
 import IAppSettings from '../types/settings.types';
 import { AppException } from '../exceptions/app.exception';
-import { ExceptionType } from '../constants/exceptionType';
+import { ExceptionConstants } from '../constants/exception.constants';
 import { config } from 'dotenv';
 
 config();
@@ -23,7 +23,7 @@ const getAppSettings = (): IAppSettings => {
     const awsTableName: string = process.env.AWS_TABLE_NAME;
 
     if (!host || !port || !awsRegion || !awsTableName) {
-        throw new AppException(ExceptionType.ServiceUnavailable, 'No env params to start app');
+        throw new AppException(ExceptionConstants.ServiceUnavailable, 'No env params to start app');
     }
 
     appSettings.host = host;

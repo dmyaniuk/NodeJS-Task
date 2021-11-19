@@ -1,23 +1,23 @@
 import { AppException } from '../exceptions/app.exception';
-import { ExceptionType } from '../constants/exceptionType';
+import { ExceptionConstants } from '../constants/exception.constants';
 import { Express, NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-const exceptionMiddlewareHandler = (error: unknown, _req: Request, res: Response, _next: NextFunction): void => {
+export const exceptionMiddlewareHandler = (error: unknown, _req: Request, res: Response, _next: NextFunction): void => {
     const resBody: { message: string } = { message: 'Some internal server error occurred...' };
 
     if (error instanceof AppException) {
         switch (error.errorType) {
-            case ExceptionType.BadRequest:
+            case ExceptionConstants.BadRequest:
                 res.status(StatusCodes.BAD_REQUEST);
                 break;
-            case ExceptionType.NotFound:
+            case ExceptionConstants.NotFound:
                 res.status(StatusCodes.NOT_FOUND);
                 break;
-            case ExceptionType.InternalError:
+            case ExceptionConstants.InternalError:
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR);
                 break;
-            case ExceptionType.ServiceUnavailable:
+            case ExceptionConstants.ServiceUnavailable:
                 res.status(StatusCodes.SERVICE_UNAVAILABLE);
                 break;
         }

@@ -1,16 +1,16 @@
-import { ExceptionType } from '../constants/exceptionType';
+import { ExceptionConstants } from '../constants/exception.constants';
 
 export class AppException extends Error {
-    private readonly _errorType: ExceptionType;
+    private readonly _errorType: ExceptionConstants;
 
-    constructor(errorType: ExceptionType, message?: string) {
+    constructor(errorType: ExceptionConstants, message?: string) {
         super(message);
 
         this._errorType = errorType;
         Object.setPrototypeOf(this, AppException.prototype);
     }
 
-    get errorType(): ExceptionType {
+    get errorType(): ExceptionConstants {
         return this._errorType;
     }
 }

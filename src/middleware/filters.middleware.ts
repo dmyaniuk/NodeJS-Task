@@ -1,6 +1,12 @@
 import IUser from '../types/user.types';
 import { AppException } from '../exceptions/app.exception';
-import { ExceptionType } from '../constants/exceptionType';
+import {
+    ExceptionConstants,
+    InvalidFormatRouteIdExceptionMessage,
+    MissingRouteIdExceptionMessage,
+    getIncorrectValueFieldExceptionMessage,
+    getMissingFieldExceptionMessage,
+} from '../constants/exception.constants';
 import { Guid } from 'guid-typescript';
 import { NextFunction, Request, Response } from 'express';
 import { UserAddressTypeName, UserGender, UserMarriedStatus } from '../constants/user.constants';
@@ -16,11 +22,11 @@ export const validateRouteIdParam = (req: Request, _res: Response, next: NextFun
     const id: string = req.params.id as string;
 
     if (!id) {
-        throw new AppException(ExceptionType.BadRequest, 'id parameter is required');
+        throw new AppException(ExceptionConstants.BadRequest, MissingRouteIdExceptionMessage);
     }
 
     if (!Guid.isGuid(id)) {
-        throw new AppException(ExceptionType.BadRequest, 'id parameter has incorrect format');
+        throw new AppException(ExceptionConstants.BadRequest, InvalidFormatRouteIdExceptionMessage);
     }
 
     next();
@@ -30,7 +36,7 @@ export const validateUserModelBody = (req: Request, _res: Response, next: NextFu
     const userModel: IUser = req.body;
 
     if (!userModel) {
-        throw new AppException(ExceptionType.BadRequest, 'User model is required');
+        throw new AppException(ExceptionConstants.BadRequest, 'User model is required');
     }
 
     const {
@@ -76,12 +82,12 @@ export const validateUserModelBody = (req: Request, _res: Response, next: NextFu
 
 const validateFieldExistence = (fieldName: string, fieldValue: unknown): void => {
     if (!fieldValue) {
-        throw new AppException(ExceptionType.BadRequest, `${fieldName} is required`);
+        throw new AppException(ExceptionConstants.BadRequest, getMissingFieldExceptionMessage(fieldName));
     }
 };
 
 const validateFieldCorrectValue = (fieldName: string, value: boolean): void => {
     if (!value) {
-        throw new AppException(ExceptionType.BadRequest, `${fieldName} gender has incorrect value`);
+        throw new AppException(ExceptionConstants.BadRequest, getIncorrectValueFieldExceptionMessage(fieldName));
     }
 };

@@ -11,7 +11,7 @@ import {
     QueryOutput,
     UpdateItemInput,
 } from 'aws-sdk/clients/dynamodb';
-import { ExceptionType } from '../constants/exceptionType';
+import { ExceptionConstants } from '../constants/exception.constants';
 import { Guid } from 'guid-typescript';
 import { PromiseResult } from 'aws-sdk/lib/request';
 
@@ -33,7 +33,7 @@ export const getUserById = async (id: string): Promise<IUser> => {
     const result: PromiseResult<QueryOutput, AWSError> = await awsDocClient.query(query).promise();
 
     if (!result.Items.length) {
-        throw new AppException(ExceptionType.NotFound);
+        throw new AppException(ExceptionConstants.NotFound);
     }
 
     return result.Items[0] as unknown as IUser;

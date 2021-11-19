@@ -1,7 +1,7 @@
 export enum UserGender {
     Male = 'Male',
     Female = 'Female',
-    Skip = 'skip',
+    Skip = 'Skip',
 }
 
 export enum UserAddressTypeName {

@@ -34,3 +34,5 @@ There are more ways to improve this code:
 - Applying new architecture approaches (Onion Architecture, CQRS, DDD, etc.) to make business support more efficient;
 - Upgrade to __NestJS__ framework (it has a lot of advantages under the hood, like embedded DI, http-pipeline, extended support for __Express JS__ etc.)
 - Implementation of Service and Functional tests to guarantee business flow works 100% correctly;
+- Implementation of Open API standard to make endpoints descriptions (Swagger, like swagger-express-ui)
+- Adding some validation libs (like express-validation, but I've decided to implement my own)
