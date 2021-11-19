@@ -7,7 +7,8 @@
     "build": "tsc --project tsconfig.json",
     "start": "./node_modules/.bin/nodemon .",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
-    "test": "jest --watch --runInBand"
+    "test": "jest --watch --runInBand",
+    "deploy": "./node_modules/.bin/sls deploy"
   },
   "repository": {
     "type": "git",
