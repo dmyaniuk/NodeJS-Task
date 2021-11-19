@@ -36,4 +36,4 @@ There are more ways to improve this code:
 - Implementation of Service and Functional tests to guarantee business flow works 100% correctly;
 - Implementation of Open API standard to make endpoints descriptions (Swagger, like swagger-express-ui)
 - Adding some validation libs (like express-validation, but I've decided to implement my own)
-- Verifying packages health and vulnerabilities issues on [Snyk](https://snyk.io/test/) (as I saw in one article, they've advised to skip packages with huge size, like > 1.5mb, and also healthscore < 50-55%)
+- Verifying packages health and vulnerabilities issues on [Snyk](https://snyk.io/test/) (as I saw in one article, they've advised to skip packages with huge size, like > 1.5mb, and also healthscore < 50-55%). Of course, it's better to have subscription to check your code for possible issues and vulnerabilities.
