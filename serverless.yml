@@ -1,0 +1,35 @@
+service: nodejs-task
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+  environment:
+    HOST=${env:HOST}
+    PORT=${env:PORT}
+    AWS_REGION=${env:AWS_REGION}
+    AWS_TABLE_NAME=${env:AWS_TABLE_NAME}
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /api/users/id/{id}
+          method: get
+      - http:
+          path: /api/users
+          method: post
+      - http:
+          path: /api/users
+          method: put
+      - http:
+          path: /api/users/id/{id}
+          method: delete
+
