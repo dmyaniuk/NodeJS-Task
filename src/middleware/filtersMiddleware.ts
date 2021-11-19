@@ -1,5 +1,5 @@
 import IUser from '../types/userTypes';
-import { AppException } from '../exceptions/app.Exception';
+import { AppException } from '../exceptions/AppException';
 import {
     ExceptionConstants,
     InvalidFormatRouteIdExceptionMessage,

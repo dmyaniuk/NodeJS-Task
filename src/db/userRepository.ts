@@ -2,7 +2,7 @@ import AWS, { AWSError } from 'aws-sdk';
 import IAppSettings from '../types/settingsTypes';
 import IUser from '../types/userTypes';
 import getAppSettings from '../utils/settingsUtils';
-import { AppException } from '../exceptions/app.Exception';
+import { AppException } from '../exceptions/AppException';
 import {
     AttributeValue,
     DeleteItemInput,
