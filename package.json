@@ -43,6 +43,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "guid-typescript": "^1.0.9",
+    "helmet": "^4.6.0",
     "http-status-codes": "^2.1.4",
     "serverless": "^1.54.0",
     "serverless-dotenv-plugin": "^3.10.0",
