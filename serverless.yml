@@ -11,10 +11,10 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    HOST=${env:HOST}
-    PORT=${env:PORT}
-    AWS_REGION=${env:AWS_REGION}
-    AWS_TABLE_NAME=${env:AWS_TABLE_NAME}
+    HOST: ${env:HOST}
+    PORT: ${env:PORT}
+    AWS_REGION_NAME: ${env:AWS_REGION_NAME}
+    AWS_TABLE_NAME: ${env:AWS_TABLE_NAME}
 
 functions:
   app:

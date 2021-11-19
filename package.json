@@ -8,7 +8,7 @@
     "start": "./node_modules/.bin/nodemon .",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "test": "jest --watch --runInBand",
-    "deploy": "./node_modules/.bin/sls deploy"
+    "deploy": "rm -rf .serverless && rm -rf .build && ./node_modules/.bin/sls deploy"
   },
   "repository": {
     "type": "git",

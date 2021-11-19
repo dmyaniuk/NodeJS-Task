@@ -19,7 +19,7 @@ const getAppSettings = (): IAppSettings => {
 
     const host: string = process.env.HOST;
     const port = Number(process.env.PORT);
-    const awsRegion: string = process.env.AWS_REGION;
+    const awsRegion: string = process.env.AWS_REGION_NAME;
     const awsTableName: string = process.env.AWS_TABLE_NAME;
 
     if (!host || !port || !awsRegion || !awsTableName) {
